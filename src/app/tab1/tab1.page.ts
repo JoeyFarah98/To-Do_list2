@@ -1,16 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { timer, Subscription } from 'rxjs';
-import { Task } from '../Models/task.interface';
+import { Task } from '../models/task.interface';
 import { DataService } from '../tabs/data.service';
 import { getLocaleDateTimeFormat } from '@angular/common';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @Component({
   selector: 'app-tracker',
-  templateUrl: './tracker.page.html',
-  styleUrls: ['./tracker.page.scss'],
+  templateUrl: './tab1.page.html',
+  styleUrls: ['./tab1.page.scss'],
 })
-export class TrackerPage implements OnInit {
+export class Tab1Page implements OnInit {
   taskForm:FormGroup;
   whencreated:number;
 
@@ -21,14 +22,14 @@ export class TrackerPage implements OnInit {
 
   ngOnInit() {
     this.taskForm = this.formBuilder.group({
-     name: ['', [Validators.required, Validators.minLength(3) ] ] 
+     taskName: ['', [Validators.required, Validators.minLength(3) ] ] 
     });
   }
 
 
   addTask() {
     let task:Task = {
-      name: this.taskForm.get('name').value,
+      name: this.taskForm.get('taskName').value,
       created: new Date().getTime(),
       status: false
 

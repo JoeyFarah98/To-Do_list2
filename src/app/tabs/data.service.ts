@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { Task } from '../Models/task.interface';
+import { Task } from '../models/task.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -31,6 +31,7 @@ export class DataService {
         this.taskList.splice( index, 1 );
       }
     });
+    this.saveData();
     this.list$.next( this.taskList );
   }
 
@@ -45,6 +46,8 @@ export class DataService {
     catch( exc ) {
       console.log( exc );
     }
+
+    this.list$.next(this.taskList);
   }
 
   loadData() {
@@ -54,6 +57,7 @@ export class DataService {
       }
       else{
         let data = JSON.parse( window.localStorage.getItem("tasks") );
+        console.log(data);
         resolve( data );
       }
     } );

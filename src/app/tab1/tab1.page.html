@@ -8,15 +8,15 @@
 
 <ion-content>
     
-  <form id="trackerForm">
+  <form id="taskform" [formGroup]="taskForm">
     <ion-list>
       <ion-list-header>
         Track a task
       </ion-list-header>
       <ion-item>
-        <ion-input name="taskName" placeholder="Enter name of task" type="text"></ion-input>
+        <ion-input name="taskName" placeholder="Enter name of task" type="text" formControlName="taskName"></ion-input>
       </ion-item>
-      <ion-button expand="full" color="primary" *ngIf="!started" (click)="addTask()">Start</ion-button>
+      <ion-button expand="full" color="primary" (click)="addTask()" [disabled]="!taskForm.valid">Start</ion-button>
      
     </ion-list>
   </form>
